@@ -12,16 +12,14 @@ ENV TESSDATA_OSD 3.01.osd
 ENV DATA_FOLDER /usr/local/share/tessdata
 ENV HEADER_FOLDER /usr/local/include/tesseract
 
-#ENV MISSING_HEADER_FILES="ccstruct/blobs.h ccutil/clst.h ccutil/elst.h ccstruct/ipoints.h ccutil/lsterr.h ccutil/mfcpch.h ccutil/notdll.h ccmain/osdetect.h ccstruct/points.h ccstruct/rect.h viewer/scrollview.h ccutil/tprintf.h ccstruct/vecfuncs.h"
-
-# install required packages
+# Install required packages
 RUN apt-get -q -y update \
     && apt-get -q -y -f install autoconf automake libtool libpng12-dev libjpeg62-dev \
     libgif-dev zlib1g-dev
 
 RUN apt-get -q -y install libtiff4-dev libleptonica-dev
      
-# compile Tesseract
+# Compile Tesseract
 RUN mkdir /opt/tesseract && cd /opt/tesseract \
     && wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-$TESSERACT_VERSION.tar.gz \
     && tar -xzf tesseract-ocr-$TESSERACT_VERSION.tar.gz \
