@@ -26,3 +26,10 @@ RUN apt-get -q -y update \
  && apt-cleanup
 
 ENV LC_ALL en_GB.UTF8
+
+RUN mkdir -p /var/run/sshd && \
+    echo "root:r" | chpasswd
+
+CMD ["/usr/sbin/sshd", "-D"]
+
+EXPOSE 22

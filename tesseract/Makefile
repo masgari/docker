@@ -1,4 +1,4 @@
-REPO=masgari/elasticsearch
+REPO=masgari/tesseract
 
 .DEFAULT: build
 .PHONY: build push all
@@ -6,7 +6,7 @@ REPO=masgari/elasticsearch
 all: build
 
 build:
-	docker build -rm -t $(REPO):1.0.1 .
+	docker build -rm -t $(REPO):3.0.2 .
 push:
 	docker push $(REPO)
 

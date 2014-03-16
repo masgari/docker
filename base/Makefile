@@ -6,7 +6,7 @@ REPO=masgari/base
 all: build
 
 build:
-	docker build -t $(REPO):12.04 -rm .
+	docker build -t $(REPO):12.04 .
 push:
 	docker push $(REPO)
 
