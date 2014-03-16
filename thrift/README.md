@@ -1,16 +1,13 @@
-Thrift 0.8.0
+Thrift 0.8.0 Docker container
+=============================
+Default command is thrift
 
-curl, wget, unzip
-
-
-Default user: root
-
-Password: r
 
 Makefile
 ======================
 
-'''make
+```make
+
 REPO=masgari/thrift
 
 .DEFAULT: build
@@ -29,4 +26,4 @@ run:
 bash:
 	docker run -t -i -rm  $(REPO) /bin/bash
 
-'''
+```
