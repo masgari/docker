@@ -1,6 +1,18 @@
 Tesseract OCR
 ======================
+Docker container for Tesseract-OCR (https://code.google.com/p/tesseract-ocr/)
 
+Environment variables:
+```
+ENV DEBIAN_FRONTEND noninteractive
+
+ENV TESSERACT_VERSION 3.02.02
+ENV TESSDATA_VERSION 3.02
+ENV TESSDATA_OSD 3.01.osd
+
+ENV DATA_FOLDER /usr/local/share/tessdata
+ENV HEADER_FOLDER /usr/local/include/tesseract
+```
 
 
 Makefile
@@ -15,7 +27,7 @@ REPO=masgari/tesseract
 all: build
 
 build:
-	docker build -t $(REPO):precise .
+	docker build -t $(REPO):3.0.2 .
 push:
 	docker push $(REPO)
 

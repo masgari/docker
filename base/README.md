@@ -1,21 +1,24 @@
 base
 ======================
-Ubuntu precise (12.04) configured for GB sources with London time zone.
+Ubuntu precise (12.04) configured for UK sources with London time zone.
 
 Installed application and services: 
 
+```
 curl, wget, unzip
 
 ssh server
+```
 
-Default user: root
-
+```
+ssh root@<container-ip>
 Password: r
+```
 
 Makefile
 ======================
 
-'''make
+```make
 REPO=masgari/base
 
 .DEFAULT: build
@@ -34,4 +37,4 @@ run:
 bash:
 	docker run -t -i -rm  $(REPO) /bin/bash
 
-'''
+```
