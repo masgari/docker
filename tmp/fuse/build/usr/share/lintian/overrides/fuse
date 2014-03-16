@@ -1,1 +1,0 @@
-fuse: setuid-binary bin/fusermount 4755 root/root
