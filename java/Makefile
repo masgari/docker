@@ -1,4 +1,4 @@
-REPO=masgari/base
+REPO=masgari/java
 
 .DEFAULT: build
 .PHONY: build push all
@@ -6,7 +6,7 @@ REPO=masgari/base
 all: build
 
 build:
-	docker build -t $(REPO):precise .
+	docker build -rm -t $(REPO):oracle-jdk7 .
 push:
 	docker push $(REPO)
 

@@ -19,9 +19,9 @@ ENV DEBIAN_FRONTEND noninteractive
 # mitigate half configured packages by installing them separatly
 #
 RUN rm -f /etc/init/resolvconf.conf
-ADD ntp_postinst /root/ntp_postinst
+#ADD ntp_postinst /root/ntp_postinst
 # cleanup on (re)start / setup console / maintain services
-ADD lxc-cleanup.sh /sbin/lxc-cleanup.sh
+#ADD lxc-cleanup.sh /sbin/lxc-cleanup.sh
 RUN FROZEN_PACKAGES=$(grep FROZEN_PACKAGES= /sbin/lxc-cleanup.sh | awk -F'"' '{print $2}'|sed -re 's/"//g') &&\
     echo "lxc" > /run/container_type &&\
     sed -re 's/ main$/ main restricted universe multiverse/g' -e "s:/archive\.:/fr.archive\.:g" -i /etc/apt/sources.list &&\
