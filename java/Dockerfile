@@ -1,6 +1,8 @@
 #gb sources
 FROM mirkokiefer/ubuntu-base
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN echo "deb http://gb.archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN echo "deb http://gb.archive.ubuntu.com/ubuntu precise-updates main universe" >> /etc/apt/sources.list
 RUN apt-get update

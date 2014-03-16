@@ -1,12 +1,7 @@
-base
-======================
-Ubuntu precise (12.04) configured for GB sources with London time zone.
-
-Installed application and services: 
+Thrift 0.8.0
 
 curl, wget, unzip
 
-ssh server
 
 Default user: root
 
@@ -16,7 +11,7 @@ Makefile
 ======================
 
 '''make
-REPO=masgari/base
+REPO=masgari/thrift
 
 .DEFAULT: build
 .PHONY: build push all
