@@ -6,7 +6,7 @@ REPO=masgari/squid
 all: build
 
 build:
-	docker build -rm -t $(REPO):1.0 .
+	docker build -rm -t $(REPO):3 .
 push:
 	docker push $(REPO)
 
