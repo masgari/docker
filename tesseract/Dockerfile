@@ -19,26 +19,40 @@ RUN apt-get -q -y update \
 
 RUN apt-get -q -y install libtiff4-dev libleptonica-dev
      
-# Compile Tesseract
+# Download files
 RUN mkdir /opt/tesseract && cd /opt/tesseract \
-    && wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-$TESSERACT_VERSION.tar.gz \
-    && tar -xzf tesseract-ocr-$TESSERACT_VERSION.tar.gz \
-    && cd tesseract-ocr \
-    && ./autogen.sh && ./configure && make && make install && ldconfig \
-    && cp ccstruct/{blobs.h,ipoints.h, points.h, rect.h, vecfuncs.h} $HEADER_FOLDER \
-    && cp ccutil/{clst.h ,elst.h ,lsterr.h ,mfcpch.h ,notdll.h ,tprintf.h} $HEADER_FOLDER \
+    && curl https://tesseract-ocr.googlecode.com/files/tesseract-ocr-$TESSERACT_VERSION.tar.gz | tar -xz \
+    && curl https://tesseract-ocr.googlecode.com/files/tesseract-ocr-$TESSDATA_VERSION.eng.tar.gz | tar -xz \
+    && curl https://tesseract-ocr.googlecode.com/files/tesseract-ocr-$TESSDATA_OSD.tar.gz | tar -xz 
+
+# Compile Tesseract
+RUN cd /opt/tesseract/tesseract-ocr \
+    && ./autogen.sh && ./configure && make && make install && ldconfig 
+
+RUN cd /opt/tesseract/tesseract-ocr/ccstruct \
+    && cp blobs.h $HEADER_FOLDER \
+    && cp ipoints.h $HEADER_FOLDER \
+    && cp points.h $HEADER_FOLDER \
+    && cp rect.h $HEADER_FOLDER \
+    && cp vecfuncs.h $HEADER_FOLDER \
+    && cd ../ccutil \
+    && cp clst.h $HEADER_FOLDER \
+    && cp elst.h $HEADER_FOLDER \
+    && cp lsterr.h $HEADER_FOLDER \
+    && cp mfcpch.h $HEADER_FOLDER \
+    && cp notdll.h $HEADER_FOLDER \
+    && cp tprintf.h $HEADER_FOLDER \
+    && cd .. \
     && cp ccmain/osdetect.h $HEADER_FOLDER \
     && cp viewer/scrollview.h $HEADER_FOLDER		 		
 
-# Downlod Tesseract data files
+# Copy Tesseract models
 RUN cd /opt/tesseract \
-    && wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-$TESSDATA_VERSION.eng.tar.gz \
-    && tar -xzf tesseract-ocr-$TESSDATA_VERSION.eng.tar.gz \
     && cp tesseract-ocr/tessdata/eng.* $DATA_FOLDER \
-    && wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-$TESSDATA_OSD.tar.gz \
-    && tar -xzf tesseract-ocr-$TESSDATA_OSD.tar.gz \
-    && cp tesseract-ocr/tessdata/osd.traineddata $DATA_FOLDER \
-    && cd / && rm -fr /opt/tesseract \
+    && cp tesseract-ocr/tessdata/osd.traineddata $DATA_FOLDER 
+
+# Cleanup
+RUN cd / && rm -fr /opt/tesseract \
     && apt-get -q -y clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* && rm -fr /tmp/*
 
 
