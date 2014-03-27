@@ -17,7 +17,7 @@ RUN apt-get -q -y update \
     && apt-get -q -y -f install autoconf automake libtool libpng12-dev libjpeg62-dev \
     libgif-dev zlib1g-dev
 
-RUN apt-get -q -y install libtiff4-dev libleptonica-dev
+RUN apt-get -q -y install libtiff4-dev libleptonica-dev libboost-thread-dev
      
 # Download files
 RUN mkdir /opt/tesseract && cd /opt/tesseract \
