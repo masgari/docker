@@ -8,10 +8,10 @@ RUN apt-get -y install openssh-server
 EXPOSE 22
 
 # Install ElasticSearch with head plugin.
-RUN wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.tar.gz \
-    && tar xzf elasticsearch-1.0.1.tar.gz \
-    && mv elasticsearch-1.0.1 /opt/elasticsearch \
-    && rm elasticsearch-1.0.1.tar.gz 
+RUN wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.1.0.tar.gz \
+    && tar xzf elasticsearch-1.1.0.tar.gz \
+    && mv elasticsearch-1.1.0 /opt/elasticsearch \
+    && rm elasticsearch-1.1.0.tar.gz 
     && cd /opt/elasticsearch \
     && bin/plugin -install mobz/elasticsearch-head
  
